@@ -18,10 +18,6 @@ class SearchController extends Controller
         $query = $request->input('q');
 
         // Log query (for logs endpoint)
-        // if ($query) {
-        //     Cache::increment('search_log:' . strtolower($query));
-        // }
-
         if ($query) {
             $key = 'search_log:' . strtolower($query);
             Cache::increment($key);
@@ -103,27 +99,17 @@ class SearchController extends Controller
             $results[$term] = $count;
         }
 
-        arsort($results); // Sort by count desc
+        arsort($results);
 
         return response()->json($results);
     }
 
     //Rebuild Index (admin-only suggested)
-    // public function rebuildIndex()
-    // {
-    //     foreach ([BlogPost::class, Product::class, Page::class, Faq::class] as $model) {
-    //         Artisan::call('scout:flush', ['model' => $model]);
-    //         Artisan::call('scout:import', ['model' => $model]);
-    //     }
-
-    //     return response()->json(['message' => 'Search indexes rebuilt successfully.']);
-    // }
-
     public function rebuildIndex()
     {
         foreach ([BlogPost::class, Product::class, Page::class, Faq::class] as $model) {
-            $model::removeAllFromSearch();      // clears Meilisearch index
-            $model::makeAllSearchable();        // re-imports all records
+            $model::removeAllFromSearch();  // clears Meilisearch index
+            $model::makeAllSearchable();    // re-imports all records
         }
 
         return response()->json(['message' => 'Search indexes rebuilt successfully.']);

@@ -13,7 +13,6 @@ A Laravel 12 application demonstrating full-text search across multiple content 
 - MySQL
 - Docker & Docker Compose
 - Laravel Queues (Database)
-- Laravel Scheduler (Optional)
 - Postman for API Testing
 
 ---

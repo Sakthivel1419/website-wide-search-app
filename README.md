@@ -168,7 +168,7 @@ Includes:
 ✅ All with sample requests and Basic Auth
 
 📁 File: `website-wide-search-api.postman_collection.json`  
-📥 [Download the collection](website-wide-search-api.postman_collection.json)
+📥 [Download the collection](WebsiteWideSearchApp.postman_collection.json)
 
 ---
 
